@@ -29,7 +29,7 @@ public class Objeto3 {
        // int numeroGrilos = 4;
         System.out.println("A linha de chegada é em " + linhaChegada);
 
-        Time time2 = new Time(2,300,3);
+        Time time2 = new Time(2,300,2);
         Time time1 = new Time(1,300,3);
         time2.FazerCorridaDeGrilo();
         time1.FazerCorridaDeGrilo();

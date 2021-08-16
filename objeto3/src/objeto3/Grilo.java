@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 
 class Grilo implements Runnable {
-    public static final Semaphore SEMAFORO = new Semaphore(2);
+    public static final Semaphore SEMAFORO = new Semaphore(4);
       int id;
       int time;
       int linhaChegada;
