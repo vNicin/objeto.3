@@ -14,6 +14,7 @@ public class Time {
     public int numeroGrilos;
     public int linhaChegada;
     public int numeroPulos;
+    
       public int distanciaPercorrida;
         public Time(int idTime, int linhaChegada, int numeroGrilos){
             this.idtime = idTime;

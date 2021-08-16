@@ -17,6 +17,7 @@ public class Objeto3 {
          public int numeroTimes = 3;
          static int linhaChegada = 300;
          static int posicao = 1;
+           static int numeroTimeVencedor;
          static int NumeroGrilo=1;
 
     /*
@@ -33,12 +34,7 @@ public class Objeto3 {
         time2.FazerCorridaDeGrilo();
         time1.FazerCorridaDeGrilo();
 
-        if(time1.numeroPulos<time2.numeroPulos){
-            System.out.println("O vencedor é o time 1 ");
-        }else{
-              System.out.println("O vencedor é o time 2 ");
-        }
-             
+          System.out.println("O vencedor é o time " + numeroTimeVencedor);
                
 
 

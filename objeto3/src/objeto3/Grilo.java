@@ -5,9 +5,13 @@
  */
 package objeto3;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 class Grilo implements Runnable {
+    public static final Semaphore SEMAFORO = new Semaphore(2);
       int id;
       int time;
       int linhaChegada;
@@ -20,26 +24,36 @@ class Grilo implements Runnable {
          this.linhaChegada = linhaChegada;
      }
       static Random random = new Random();
-    public void run() {
-
-        int posicao =0;
-
+	public void run() {
+          
+	    int posicao =0;   
+        try {
+            SEMAFORO.acquire();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Grilo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
             do{
-
+                
                 int pulo = random.nextInt(30);
                 posicao += pulo;
                 numeroPulos++;
-                System.out.println("O Grilo" + id +" " +"pulou "+ pulo + "cms e já percorreu " + posicao +"cms");
+                System.out.println("O Grilo_" + id +" " +"pulou "+ pulo + "cms e já percorreu " + posicao +"cms");
             }while (posicao<=linhaChegada);
             if(posicao>linhaChegada){
-
-                 System.out.println(" O Grilo" + id +" " +"chegou em "+ objeto3.Objeto3.posicao + "º lugar com "+ numeroPulos + " pulos");
+                
+                 System.out.println(" O Grilo_" + id +" " +"chegou em "+ objeto3.Objeto3.posicao + "º lugar com "+ numeroPulos + " pulos");
                  distanciaPercorrida = posicao;
+                 if(objeto3.Objeto3.posicao ==1){
+                     objeto3.Objeto3.numeroTimeVencedor = time;
+                 }
                   objeto3.Objeto3.posicao++;
-
+                 
                 // System.out.println(" O Grilo_" +id +" " +"alcançou a linha de chegada com "+ numeroPulos + " pulos");
             }
-    }
+            SEMAFORO.release();
+	}
         public int pegarNumeroPulos(){
              return numeroPulos;
         }
@@ -47,3 +61,4 @@ class Grilo implements Runnable {
             return distanciaPercorrida;
         }
 }
+ 
